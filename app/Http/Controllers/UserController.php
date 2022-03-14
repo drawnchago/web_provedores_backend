@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Provider;
 use App\Http\Controllers\RoleController;
 use App\Models\Role;
+use App\Models\RolePermission;
 
 class UserController extends Controller
 {
@@ -17,16 +19,17 @@ class UserController extends Controller
 
     public function login(Request $req){
 
-        $response = [
-            'success' => true
-        ];
+        $response = ['success' => true];
 
-        $user = User::where('username', $req->username)->where('password',$req->password)->where('status',1)->first();
+        $username = $req->username;
+        $password = $req->password;
+
+        $user = User::where('username', $username)->where('password',$password)->where('status',1)->first();
 
         if($user){
-            $user->role = Role::find($user->role_id);
+            $user->role            = Role::find($user->role_id);
             $user->rolePermissions = RoleController::getByUserAndRole($user);
-            $response['user'] = $user;
+            $response['user']      = $user;
         }else{
             $response['success'] = false;
             $response['message'] = 'Usuario o contraseña incorrectaos';

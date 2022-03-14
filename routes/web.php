@@ -24,6 +24,9 @@ $router->get('getMenu', 'MainController@getMenu');
 $router->post('testImg', 'ProcessController@testImg');
 
 
+$router->get('getValidationsXml', 'OpProcessController@getValidationsXml');
+$router->post('checkAndSaveFile', 'OpProcessController@checkAndSaveFile');
+$router->post('saveXML', 'OpProcessController@saveXML');
 
 //! Ordenes de trabajo
 $router->post('saveWorkOrder', 'ProcessController@saveWorkOrder');
@@ -114,7 +117,7 @@ $router->get('getCoins', 'StCatalogsController@getCoins');
 $router->post('saveCoin', 'StCatalogsController@saveCoin');
 $router->post('deleteCoin', 'StCatalogsController@deleteCoin');
 /*Sh-CONTROLLER    PROVIDERS*/
-$router->get('getProviders', 'ShCatalogsController@getProviders');
+// $router->get('getProviders', 'ShCatalogsController@getProviders');
 $router->post('saveProvider', 'ShCatalogsController@saveProvider');
 $router->post('deleteProvider', 'ShCatalogsController@deleteProvider');
 /*Sh-CONTROLLER    CFDI*/
